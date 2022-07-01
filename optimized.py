@@ -70,7 +70,7 @@ def total_profit(call_modif_key):
 #algoritme glouton
 
 def glouton(call_modif_key,price_max):
-    # tart = time.time()
+    start = time.time()
     table_triee=sorted(call_modif_key,key= price, reverse=True)
     price_total=0
     #Algho glouton
@@ -90,8 +90,8 @@ def glouton(call_modif_key,price_max):
             price_total= price_total+price_actions
         #on passe à la video suivante    
         i=i+1
-        # end = time.time()
-    return solution_gloutone
+        end = time.time()
+    return solution_gloutone,end-start
 
 solution_gloutonne=glouton(actions,500)
 solution_gloutonne2=glouton(actions2,500)
