@@ -64,13 +64,13 @@ def total_price(call_modif_key):
 def total_profit(call_modif_key):
     Total_profit=0
     for profit in call_modif_key:
-        Total_profit=float(Total_profit)+float(profit['profit'])     
+        Total_profit=Total_profit+profit['profit']
     return Total_profit    
-print(total_profit(actions))
+# print(total_profit(actions))
 #algoritme glouton
 
 def glouton(call_modif_key,price_max):
-    start = time.time()
+    # tart = time.time()
     table_triee=sorted(call_modif_key,key= price, reverse=True)
     price_total=0
     #Algho glouton
@@ -89,9 +89,9 @@ def glouton(call_modif_key,price_max):
             #mettre à jour le prix total
             price_total= price_total+price_actions
         #on passe à la video suivante    
-        i=i+1 
-        end = time.time()
-    return solution_gloutone, end - start
+        i=i+1
+        # end = time.time()
+    return solution_gloutone
 
 solution_gloutonne=glouton(actions,500)
 solution_gloutonne2=glouton(actions2,500)
@@ -104,21 +104,22 @@ print(total_profit(solution_gloutonne2))
 print(final_solution)
 print(final_solution2)
 
-if __name__ == '__main__':
-    times = []
-    for i in range(len(actions)):
-        time_val= glouton(actions[:i])
-        times.append(time_val)
 
-    x = [i for i in range(1, 21)]
-    print(x)
+# if __name__ == '__main__':
+#     times = []
+#     for i in range(len(actions)):
+#         time_val= glouton(actions[:i])
+#         times.append(time_val)
 
-    x = np.array(x)
-    y = np.array(times)
-    plt.plot(x, y)
+#     x = [i for i in range(1, 21)]
+#     print(x)
 
-    plt.show()
+#     x = np.array(x)
+#     y = np.array(times)
+#     plt.plot(x, y)
+
+#     plt.show()
 
 # faire fichier cvv donner open classeroum
-# l'ance avec optimiser
+# lancer avec optimiser
 # faire l'analyse.
