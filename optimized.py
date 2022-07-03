@@ -4,6 +4,8 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+
 filename= "dataset1_Python+P7.csv"
 filename2= "dataset2_Python+P7.csv"
 
@@ -56,14 +58,14 @@ def price(actions):
 
 def total_price(call_modif_key):
     Total_price=0
-    for price in call_modif_key:
+    for price in call_modif_key[0]:
         Total_price=Total_price+price['price']       
     return Total_price 
 
 
 def total_profit(call_modif_key):
     Total_profit=0
-    for profit in call_modif_key:
+    for profit in call_modif_key[0]:
         Total_profit=Total_profit+profit['profit']
     return Total_profit    
 # print(total_profit(actions))
@@ -90,7 +92,7 @@ def glouton(call_modif_key,price_max):
             price_total= price_total+price_actions
         #on passe à la video suivante    
         i=i+1
-        end = time.time()
+    end = time.time()
     return solution_gloutone,end-start
 
 solution_gloutonne=glouton(actions,500)
@@ -105,20 +107,21 @@ print(final_solution)
 print(final_solution2)
 
 
-# if __name__ == '__main__':
-#     times = []
-#     for i in range(len(actions)):
-#         time_val= glouton(actions[:i])
-#         times.append(time_val)
+if __name__ == '__main__':
+    times = []
+    for i in range(len(actions)):
+        time_val= glouton(actions[:i],500)
+        times.append(time_val[1])
+  
+    
+    x = [i for i in range(0,len(actions))]
+    print(x)
+    data_type = object
+    x = np.array(x)
+    y = np.array(times)
+    plt.plot(x, y)
 
-#     x = [i for i in range(1, 21)]
-#     print(x)
-
-#     x = np.array(x)
-#     y = np.array(times)
-#     plt.plot(x, y)
-
-#     plt.show()
+    plt.show()
 
 # faire fichier cvv donner open classeroum
 # lancer avec optimiser
