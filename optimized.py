@@ -1,10 +1,7 @@
-import bruteforce
 import csv
 import time
 import matplotlib.pyplot as plt
 import numpy as np
-
-
 
 filename= "dataset1_Python+P7.csv"
 filename2= "dataset2_Python+P7.csv"
@@ -37,28 +34,14 @@ with open(filename2,'r') as data:
        if element["price"]> 0 and element["profit"] > 0 : 
              actions2.append(element)
                
-# print(actions2[0:1])         
-
-# def modif_key(data: list) -> list:
-#     for dictionary in data:
-#         dictionary["name"] = dictionary["nom"]
-#         del dictionary["nom"]
-#         dictionary["price"] = dictionary["cout_par_action"]
-#         del dictionary["cout_par_action"]
-#         dictionary["profit"] = dictionary["bénéfice"]
-#         del dictionary["bénéfice"]
-#     return data
-
-
-# data_brute_force = bruteforce.data
-# call_modif_key = modif_key(data_brute_force)
-# print(call_modif_key[0]['price'])
+def profit(actions):
+    return actions['profit']
 def price(actions):
     return actions['price']
 
-def total_price(call_modif_key):
+def total_price(actions):
     Total_price=0
-    for price in call_modif_key[0]:
+    for price in actions[0]:
         Total_price=Total_price+price['price']       
     return Total_price 
 
@@ -73,11 +56,11 @@ def total_profit(call_modif_key):
 
 def glouton(call_modif_key,price_max):
     start = time.time()
-    table_triee=sorted(call_modif_key,key= price, reverse=True)
+    table_triee=sorted(call_modif_key,key= profit, reverse=True)
     price_total=0
     #Algho glouton
     solution_gloutone=[]
-    #on se positionne sur la 1er video
+    # i est égale à zéro
     i=0
     #tant qu'il reste des actions à traiter et que le prix max n'est pas atteint
     while i < len(table_triee) and price_total < price_max:
@@ -90,22 +73,26 @@ def glouton(call_modif_key,price_max):
             solution_gloutone.append(actions)
             #mettre à jour le prix total
             price_total= price_total+price_actions
-        #on passe à la video suivante    
+        #on passe à l'action suivante    
         i=i+1
     end = time.time()
     return solution_gloutone,end-start
 
 solution_gloutonne=glouton(actions,500)
 solution_gloutonne2=glouton(actions2,500)
+# final_solution=total_price(solution_gloutonne)*total_profit(solution_gloutonne)/100
+# final_solution2=total_price(solution_gloutonne2)*total_profit(solution_gloutonne2)/100
 final_solution=(100*total_profit(solution_gloutonne))/total_price(solution_gloutonne)
 final_solution2=(100*total_profit(solution_gloutonne2))/total_price(solution_gloutonne2)
-print(total_price(solution_gloutonne))
-print(total_price(solution_gloutonne2))
-print(total_profit(solution_gloutonne))
-print(total_profit(solution_gloutonne2))
-print(final_solution)
-print(final_solution2)
-
+# print("algho1")
+# print(total_price(solution_gloutonne))
+# print(final_solution)
+# print("algho2")
+# print(total_price(solution_gloutonne2))
+# print(total_profit(solution_gloutonne))
+# print(total_profit(solution_gloutonne2))
+# print(final_solution2)
+# print(solution_gloutonne2)
 
 if __name__ == '__main__':
     times = []
@@ -123,6 +110,3 @@ if __name__ == '__main__':
 
     plt.show()
 
-# faire fichier cvv donner open classeroum
-# lancer avec optimiser
-# faire l'analyse.

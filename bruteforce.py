@@ -29,7 +29,6 @@ def brute_force(table_actions):
     combinations = []
     for i in range(2**len(table_actions)):
         binary = f"{{0:0{len(table_actions)}b}}".format(i)
-
         actions = []
         benefice = 0
         cout_action = 0
@@ -57,6 +56,7 @@ if __name__ == '__main__':
         times.append(time_val)
 
     x = [i for i in range(1, 21)]
+    
     print(x)
 
     x = np.array(x)
